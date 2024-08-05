@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/static/lib/bootstrap-4.6.2-dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/static/lib/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.css}">
+    <script th:src="@{/static/lib/jquery/jquery-3.7.1.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/css/register.css}">
+</head>
+<body>
+<main class="main-custom">
+    <section class="form-register">
+        <div
+                class="banner-custom d-flex justify-content-center align-items-center"
+        >
+            <img class="img-custom" th:src="@{/static/image/love.png}" alt=""/>
+            <div class="text-banner text-white">
+                <div>GUEST</div>
+                <span>REGISTRATION FORM</span>
+            </div>
+        </div>
+        <form th:action="@{/register}" method="post" th:object="${member}" class="p-3">
+            <div class="form-row">
+                <div class="form-group inputUsername col-6">
+                    <label>Username</label>
+                    <input class="form-control" type="text" name="" th:field="*{userName}"/>
+                    <span class="text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"
+                    >userName Error</span>
+                </div>
+                <div class="form-group inputEmail col-6">
+                    <label>Email</label>
+                    <input class="form-control" type="text" name="" th:field="*{email}"/>
+                    <span class="form-text text-danger" th:if="${#fields.hasErrors('email')}"
+                          th:errors="*{email}"></span>
+                </div>
+            </div>
+
+            <div class="form-group inputPass">
+                <label>Password</label>
+                <input class="form-control" id="pass" type="password" name="" th:field="*{password}"/>
+                <span class="form-text text-danger" th:if="${#fields.hasErrors('password')}"
+                      th:errors="*{password}"></span>
+            </div>
+            <div class="form-group inputRePass">
+                <label>Res Password</label>
+                <input class="form-control" id="passRes" type="password" name=""/>
+                <span class="form-text text-danger" id="message"></span>
+            </div>
+            <button type="submit" class="btn btn-info btnSignup btn-lg btn-block"
+                    onclick="return confirm('Are you sure you can perform this function? ')">SignUp
+            </button>
+            <div class="d-flex justify-content-start">
+                <a th:href="@{/}" class="ml-4 ">Login here</a>
+            </div>
+
+        </form>
+
+    </section>
+</main>
+<script th:src="@{/static/js/register.js}"></script>
+</body>
+</html>

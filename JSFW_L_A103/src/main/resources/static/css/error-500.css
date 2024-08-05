@@ -1,0 +1,18 @@
+body {
+    background-color: #cc2f4e;
+}
+
+.image-custom {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.link-custom {
+    color: #e4e1e1;
+    text-decoration: underline;
+}
+
+.main-custom {
+    height: 100vh;
+}

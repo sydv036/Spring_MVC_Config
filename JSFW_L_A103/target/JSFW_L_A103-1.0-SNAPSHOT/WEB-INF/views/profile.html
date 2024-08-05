@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/static/lib/bootstrap-4.6.2-dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/static/lib/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.css}">
+    <script th:src="@{/static/lib/jquery/jquery-3.7.1.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/css/profile.css}">
+</head>
+<body>
+<th:block th:insert="layout/header"></th:block>
+<div class="body-content col-9 p-5">
+    <h3 class="border-bottom">
+        <img class="img-header" th:src="@{/static/image/SY DV-Photoroom.png}" alt=""/>Edit
+        Profile
+    </h3>
+    <form th:action="@{/member/profile}" method="post" th:object="${profile}" class="border form-content">
+        <input type="hidden" th:field="*{id}">
+        <div class="title border-bottom pl-4">Profile Form Elements</div>
+        <div class="content col-9 p-4">
+            <div class="form-group">
+                <label for="exampleFormControlInput4" class="font-weight-bold"
+                >First name</label
+                >
+                <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput4"
+                        placeholder="Enter the first name"
+                        th:field="*{firstName}"
+                />
+                <span class="form-text text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Fail</span>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput3" class="font-weight-bold"
+                >Last name</label
+                >
+                <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput3"
+                        placeholder="Enter the last name"
+                        th:field="*{lastName}"
+                />
+                <span class="form-text text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Fail</span>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold"
+                >Email</label
+                >
+                <span class="form-text" th:text="${profile.email}"> 123@gmail.com</span>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput2" class="font-weight-bold"
+                >Phone</label
+                >
+                <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput2"
+                        placeholder="Enter the phone number"
+                        th:field="*{phone}"
+                />
+                <span class="form-text text-danger" th:if="${#fields.hasErrors('phone')}"
+                      th:errors="*{phone}">Fail</span>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold"
+                >Description</label
+                >
+                <textarea
+                        class="form-control"
+                        id="exampleFormControlTextarea6"
+                        rows="3"
+                        th:field="*{description}"
+                ></textarea>
+                <span class="form-text text-danger" th:if="${#fields.hasErrors('description')}"
+                      th:errors="*{description}">Fail</span>
+            </div>
+            <button type="submit" class="btn btn-outline-dark"
+                    onclick="return confirm('Are you sure you can perform this function? ')">Submit
+            </button>
+            <button type="reset" class="btn btn-outline-dark">Reset</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

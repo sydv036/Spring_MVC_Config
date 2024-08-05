@@ -1,6 +1,0 @@
-com\example\Config_New\infastructor\AppInitializer.class
-com\example\Config_New\controller\HelloController.class
-com\example\Config_New\repository\IModunRepository.class
-com\example\Config_New\infastructor\JpaConfig.class
-com\example\Config_New\entity\Modun.class
-com\example\Config_New\infastructor\WebConfig.class

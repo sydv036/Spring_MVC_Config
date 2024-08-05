@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/static/lib/bootstrap-4.6.2-dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/static/lib/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.css}">
+    <script th:src="@{/static/lib/jquery/jquery-3.7.1.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/css/login.css}">
+</head>
+<body>
+<section class="center-screen">
+    <div class="form-custom d-flex justify-content-center align-items-center">
+        <div class="row">
+            <div class="col-6 d-flex justify-content-center align-items-center">
+                <div
+                        class="form-img-custom d-flex justify-content-center align-items-center"
+                >
+                    <img
+                            class="img-custom"
+                            src="https://archive.org/download/HeaderIconUser/Header-Icon-User.png"
+                            alt=""
+                    />
+                </div>
+            </div>
+            <div class="col-6">
+                <form
+                        th:action="@{/login}"
+                        class="form-login-custom d-flex justify-content-center align-items-center flex-column"
+                        method="post"
+                >
+                    <h4>Member Login</h4>
+                    <div class="form-input">
+                        <i class="fas fa-envelope icon"></i>
+                        <input
+                                type="email"
+                                class="form-control inputLogin"
+                                placeholder="Email"
+                                th:name="username"
+                                th:value="${param.username}"
+                        />
+                    </div>
+                    <div class="form-input">
+                        <i class="fas fa-key icon"></i>
+                        <input
+                                type="password"
+                                class="form-control inputLogin"
+                                placeholder="Password"
+                                th:name="password"
+                        />
+                    </div>
+                    <span class=" text-danger" th:text="${param.error}"></span>
+                    <button
+                            type="submit"
+                            class="btn btn-success btn-lg btn-block btn-custom mt-4"
+                    >
+                        Login
+                    </button>
+                    <div>
+                        <a th:href="@{/register}" class="forgot">Register?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

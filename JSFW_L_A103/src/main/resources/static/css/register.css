@@ -1,0 +1,29 @@
+.main-custom {
+    margin: 0 auto;
+    width: 600px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+
+.banner-custom {
+    background-color: #085643;
+    gap: 30px;
+}
+
+.info-custom {
+}
+
+.img-custom {
+    width: 250px;
+    height: 250px;
+}
+
+.text-banner {
+    font-size: 20px;
+    text-align: justify;
+}
+

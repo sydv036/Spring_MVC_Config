@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/static/lib/bootstrap-4.6.2-dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/static/lib/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.css}">
+    <script th:src="@{/static/lib/jquery/jquery-3.7.1.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/css/form-content.css}">
+</head>
+<body>
+<th:block th:insert="layout/header"></th:block>
+<div class="body-content col-9 p-5">
+    <h3 class="border-bottom"><img class="img-header" th:src="@{/static/image/SY DV-Photoroom.png}" alt=""/>Add Content
+    </h3>
+    <form th:action="@{/member/content/add}" method="post" th:object="${content}" class="border form-content">
+        <div class="title border-bottom pl-4">Content Form Elements</div>
+        <div class="content col-9 p-4">
+            <div class="form-group">
+                <label for="exampleFormControlInput1" class="font-weight-bold"
+                >Title</label
+                >
+                <input
+                        type="text"
+                        class="form-control"
+                        id="exampleFormControlInput1"
+                        placeholder="Enter the title"
+                        th:field="*{title}"
+                />
+                <span class="form-text text-danger" th:if="${#fields.hasErrors('title')}"
+                      th:errors="*{title}">Fail</span>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1" class="font-weight-bold"
+                >Brief</label
+                >
+                <textarea
+                        class="form-control"
+                        id="exampleFormControlTextarea1"
+                        rows="3"
+                        th:field="*{brief}"
+                ></textarea>
+                <span class="form-text text-danger" th:if="${#fields.hasErrors('brief')}"
+                      th:errors="*{brief}">Fail</span>
+            </div>
+            <div class="form-group">
+                <label class="font-weight-bold"
+                >Content</label
+                >
+                <textarea
+                        class="form-control"
+                        rows="3"
+                        style="height: 300px"
+                        th:field="*{content}"
+                ></textarea>
+                <span class="form-text text-danger" th:if="${#fields.hasErrors('content')}"
+                      th:errors="*{content}">Fail</span>
+            </div>
+        </div>
+        <div class="p-4">
+            <button type="submit" onclick="return confirm('Are you sure you can perform this function? ')"
+                    class="btn btn-outline-dark">Submit
+            </button>
+            <button type="reset" class="btn btn-outline-dark">Reset</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

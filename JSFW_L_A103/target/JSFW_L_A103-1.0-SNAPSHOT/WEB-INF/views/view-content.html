@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/static/lib/bootstrap-4.6.2-dist/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/static/lib/fontawesome-free-5.15.4-web/fontawesome-free-5.15.4-web/css/all.css}">
+    <script th:src="@{/static/lib/jquery/jquery-3.7.1.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/css/view-content.css}">
+</head>
+<body>
+<th:block th:insert="layout/header"></th:block>
+
+<div class="body-content col-9 p-5">
+    <h3 class="border-bottom">
+        <img class="img-header" th:src="@{/static/image/SY DV-Photoroom.png}" alt=""/>View Content
+    </h3>
+    <div class="">
+        <table class="table table-bordered table-custom">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Brief</th>
+                <th scope="col">Create Date</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="items,index : ${content.data}">
+                <th scope="row" th:text="${index.index +1}">1</th>
+                <td th:text="${items.getTitle()}">Mark</td>
+                <td th:text="${items.getBrief()}">Otto</td>
+                <td th:text="${items.getCreateDate()}">@mdo</td>
+                <td>
+                    <button class="btn" id="btnDeleteContent"
+                            th:data="${items.getId()}"
+                    ><i class="fas fa-trash-alt"
+                        style="color: #f20707;"></i></button>
+                    <button th:if="${memberSession.id == items.getAuthorId()}" class="btn" id="btnDetailContent"
+                            th:data="${items.getId()}" data-toggle="modal"
+                            data-target="#modalDetail"
+                    ><i class="far fa-edit" style="color: #50e411;"></i></button>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <!-- Modal start-->
+    <div class="modal fade " id="modalDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Content Detail</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="contentForm">
+                        <input type="hidden" id="idInput">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input id="title" name="title" class="form-control form-input">
+                            <span class="form-text text-danger messageError" id="titleError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Brief</label>
+                            <textarea id="brief" name="brief" class="form-control form-input"
+                            ></textarea>
+                            <span class="form-text text-danger messageError" id="briefError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Content</label>
+                            <textarea id="content" name="content" class="form-control form-input"
+                            ></textarea>
+                            <span class="form-text text-danger messageError" id="contentError"></span>
+                        </div>
+                        <button type="button" class="btn btn-secondary" id="btnCloseModal" data-dismiss="modal">Close
+                        </button>
+                        <button type="button" class="btn btn-primary  " id="btnUpdateContent">Save changes</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal end-->
+
+    <nav aria-label="Page navigation example" th:if="${param.title == null}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item " th:classappend="${content.getPageNumber() == 1?'disabled':''}">
+                <a class="page-link"
+                   th:href="@{/member/content(page=${content.getPageNumber() - 1})}">Previous</a>
+            </li>
+            <li class="page-item "
+                th:each="i : ${#numbers.sequence(1,content.getTotalPage())}"
+                th:classappend="${i == content.getPageNumber()?'active':''}"><a class="page-link"
+                                                                                th:href="@{/member/content(page=${i})}"
+                                                                                th:text="${i}">1</a>
+            </li>
+            <li class="page-item " th:classappend="${content.getPageNumber() == content.getTotalPage()?'disabled':''}">
+                <a class="page-link "
+                   th:href="@{/member/content(page=${content.getPageNumber() + 1})}">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <nav aria-label="Page navigation example" th:unless="${param.title == null}">
+        <ul class="pagination justify-content-center">
+            <li class="page-item " th:classappend="${content.getPageNumber() == 1?'disabled':''}">
+                <a class="page-link"
+                   th:href="@{/member/content/search(page=${content.getPageNumber() - 1},title=${param.title})}">Previous</a>
+            </li>
+            <li class="page-item "
+                th:each="i : ${#numbers.sequence(1,content.getTotalPage())}"
+                th:classappend="${i == content.getPageNumber()?'active':''}">
+                <a class="page-link"
+                   th:href="@{/member/content/search(page=${i},title=${param.title})}"
+                   th:text="${i}">1</a>
+            </li>
+            <li class="page-item " th:classappend="${content.getPageNumber() == content.getTotalPage()?'disabled':''}">
+                <a class="page-link "
+                   th:href="@{/member/content/search(page=${content.getPageNumber() + 1},title=${param.title})}">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<script th:src="@{/static/js/content.js}"></script>
+</body>
+</html>

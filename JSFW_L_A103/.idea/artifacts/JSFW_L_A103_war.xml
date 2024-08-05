@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="JSFW_L_A103:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>JSFW_L_A103</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="JSFW_L_A103-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="JSFW_L_A103:war exploded" />
+    </root>
+  </artifact>
+</component>
